@@ -2135,4 +2135,88 @@ footer > p {
         bottom: -15px;
     }
 
+}@media (max-width: 600px) {
+
+}@media (max-width: 600px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    #home {
+        padding: 100px 20px 60px;
+        text-align: center;
+    }
+
+    .hero-name {
+        font-size: 2.5rem !important;
+        line-height: 1;
+        letter-spacing: -1.5px;
+        white-space: normal !important;
+    }
+
+    .hero-role h2 {
+        font-size: 1rem;
+    }
+
+    .degree {
+        font-size: 10px;
+        line-height: 1.8;
+    }
+
+    .tagline {
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    .hero-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .hero-stat strong {
+        font-size: 1rem;
+    }
+
+    .hero-stat span {
+        font-size: 7px;
+    }
+
+    .home-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .home-buttons .btn {
+        width: 100%;
+    }
+
+    .hero-scroll {
+        display: none;
+    }
+
+    #about {
+        padding: 80px 20px;
+    }
+
+    .about-main {
+        grid-template-columns: 1fr !important;
+        gap: 45px;
+    }
+
+    .about-header h2 {
+        font-size: 3rem;
+    }
+
+    .about-intro h3 {
+        font-size: 2.7rem;
+    }
+
+    .about-description {
+        font-size: 13px;
+    }
+
+    .about-highlights {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
 }
