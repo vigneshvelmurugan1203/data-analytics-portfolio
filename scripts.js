@@ -15,6 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ).matches;
 
     const isMobile = window.innerWidth <= 650;
+    /* MOBILE PERFORMANCE MODE */
+if (isMobile) {
+    document.documentElement.classList.add("mobile-performance");
+}
 
 
     /* =====================================================
@@ -1088,4 +1092,35 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     
 
-});
+});/* =========================================================
+   MOBILE PERFORMANCE — STOP HEAVY EFFECTS
+========================================================= */
+
+if (isMobile) {
+
+    // Stop particle animations
+    document.querySelectorAll(".particle-field span").forEach(particle => {
+        particle.getAnimations().forEach(animation => animation.cancel());
+    });
+
+    // Stop heavy hero animations
+    document.querySelectorAll(
+        ".data-orbit, .energy-ring, .data-stream, .aurora"
+    ).forEach(element => {
+        element.getAnimations().forEach(animation => animation.cancel());
+    });
+
+    // Remove mouse-style transforms
+    document.querySelectorAll(
+        ".hero-content, .data-core, .tech-node"
+    ).forEach(element => {
+        element.style.transform = "";
+    });
+
+    // Remove card animation transforms
+    document.querySelectorAll(
+        ".skill-card, .project-card, .contact-card, .career-card, .about-panel"
+    ).forEach(card => {
+        card.style.transform = "";
+    });
+}
