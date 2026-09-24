@@ -4700,4 +4700,175 @@ footer {
         min-width: 170px;
         min-height: 54px;
     }
+}/* =========================================================
+   MOBILE RESPONSIVE FIX — FINAL
+========================================================= */
+
+@media (max-width: 650px) {
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden !important;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .scene {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    main,
+    section,
+    footer {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Navbar */
+    .navbar {
+        width: 100%;
+        max-width: 100%;
+        padding: 16px 18px !important;
+    }
+
+    .nav-links {
+        gap: 12px;
+        overflow-x: auto;
+        max-width: 100%;
+        scrollbar-width: none;
+    }
+
+    .nav-links::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-links a {
+        white-space: nowrap;
+    }
+
+    /* Hero */
+    .hero {
+        width: 100%;
+        min-height: 100svh;
+        overflow: hidden;
+    }
+
+    .hero-content {
+        width: calc(100% - 32px);
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .hero-name {
+        max-width: 100%;
+        word-break: normal;
+    }
+
+    .hero-name span {
+        display: block;
+    }
+
+    .hero-description {
+        max-width: 100%;
+    }
+
+    .hero-stack {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Hide heavy desktop 3D objects on small screens */
+    .data-orbit,
+    .energy-ring,
+    .tech-node {
+        transform: scale(.65);
+    }
+
+    .data-core {
+        transform: translate(-50%, -50%) scale(.7) !important;
+    }
+
+    /* Sections */
+    .section {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+    }
+
+    .section-intro {
+        max-width: 100%;
+    }
+
+    /* About */
+    .about-layout {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Skills */
+    .skills-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Projects */
+    .projects-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .project-card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Contact */
+    .contact-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .contact-card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Career */
+    .career-card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Resume */
+    .resume-section {
+        width: calc(100% - 28px) !important;
+        max-width: 100%;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .resume-section .resume-btn {
+        max-width: 100%;
+    }
+
+    /* Footer */
+    footer {
+        width: 100%;
+        text-align: center;
+        padding-left: 18px;
+        padding-right: 18px;
+    }
 }
