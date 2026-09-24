@@ -1,6 +1,14 @@
-/* =========================
-   BASIC RESET
-========================= */
+/* =========================================================
+   VIGNESH VELMURUGAN
+   PREMIUM DATA ANALYST PORTFOLIO
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+
+/* =========================================================
+   GLOBAL RESET
+   ========================================================= */
 
 * {
     margin: 0;
@@ -13,16 +21,25 @@ html {
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f7fb;
-    color: #1f2937;
+    font-family: "Inter", Arial, sans-serif;
+    background: #f7f9fc;
+    color: #0f172a;
     line-height: 1.6;
+    overflow-x: hidden;
+}
+
+section {
+    scroll-margin-top: 80px;
+}
+
+a {
+    text-decoration: none;
 }
 
 
-/* =========================
-   NAVIGATION BAR
-========================= */
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
 
 nav {
     position: sticky;
@@ -30,490 +47,613 @@ nav {
     z-index: 1000;
 
     width: 100%;
+    padding: 19px 7%;
 
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 
-    padding: 18px 8%;
+    background: rgba(2, 6, 23, 0.88);
 
-    background: #0f172a;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    transition: 0.35s ease;
+}
+
+nav.scrolled {
+    padding-top: 14px;
+    padding-bottom: 14px;
+
+    box-shadow:
+        0 12px 40px rgba(2, 6, 23, 0.18);
 }
 
 .logo {
+    font-family: "Space Grotesk", sans-serif;
+
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
     color: white;
-    letter-spacing: 1px;
+}
+
+.logo::after {
+    content: ".";
+    color: #38bdf8;
 }
 
 nav ul {
     list-style: none;
 
     display: flex;
-    gap: 30px;
+    align-items: center;
+
+    gap: 32px;
 }
 
 nav ul li a {
-    text-decoration: none;
-    color: #dbeafe;
+    position: relative;
 
-    font-size: 14px;
-    font-weight: bold;
+    color: #cbd5e1;
 
-    transition: 0.3s;
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: 1.2px;
+
+    transition: 0.3s ease;
 }
 
-nav ul li a:hover {
-    color: #60a5fa;
+nav ul li a:hover,
+nav ul li a.active {
+    color: #38bdf8;
+}
+
+nav ul li a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -8px;
+
+    width: 0;
+    height: 2px;
+
+    background: #38bdf8;
+
+    transition: 0.3s ease;
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after {
+    width: 100%;
 }
 
 
-/* =========================
-   ALL SECTIONS
-========================= */
+/* =========================================================
+   GENERAL SECTIONS
+   ========================================================= */
 
 section {
-    max-width: 1100px;
+    max-width: 1150px;
     margin: auto;
-    padding: 90px 25px;
+    padding: 110px 30px;
 }
 
 section h2 {
-    font-size: 30px;
-    margin-bottom: 30px;
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 42px;
+    font-weight: 700;
+
+    letter-spacing: -1px;
+
     color: #0f172a;
 }
 
 
-/* =========================
-   HOME
-========================= */
+/* =========================================================
+   HERO / HOME
+   ========================================================= */
 
 #home {
+    position: relative;
+
     max-width: none;
-    min-height: 85vh;
+    min-height: calc(100vh - 70px);
 
     display: flex;
     flex-direction: column;
+
     justify-content: center;
     align-items: center;
 
     text-align: center;
 
-    background: linear-gradient(
-        135deg,
-        #0f172a,
-        #1e3a8a
-    );
+    padding: 100px 25px;
+
+    overflow: hidden;
 
     color: white;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(37, 99, 235, 0.28),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 15% 80%,
+            rgba(14, 165, 233, 0.12),
+            transparent 28%
+        ),
+        linear-gradient(
+            135deg,
+            #020617 0%,
+            #07152f 48%,
+            #0f2a5c 100%
+        );
+}
+
+
+/* grid background */
+
+#home::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(148, 163, 184, 0.045) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(148, 163, 184, 0.045) 1px,
+            transparent 1px
+        );
+
+    background-size: 55px 55px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 90%
+    );
+
+    pointer-events: none;
+}
+
+
+/* glow */
+
+#home::after {
+    content: "";
+
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    border-radius: 50%;
+
+    background: rgba(37, 99, 235, 0.10);
+
+    filter: blur(100px);
+
+    pointer-events: none;
+}
+
+
+/* hero text */
+
+.welcome {
+    position: relative;
+    z-index: 2;
+
+    margin-bottom: 20px;
+
+    color: #38bdf8;
+
+    font-size: 12px !important;
+    font-weight: 700;
+
+    letter-spacing: 5px;
+    text-transform: uppercase;
 }
 
 #home h1 {
-    font-size: 55px;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(48px, 7vw, 86px);
+
+    font-weight: 700;
+
+    line-height: 1.02;
+
+    letter-spacing: -3px;
+
+    margin-bottom: 20px;
+
+    background:
+        linear-gradient(
+            120deg,
+            #ffffff 20%,
+            #dbeafe 50%,
+            #7dd3fc 80%
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    text-shadow:
+        0 0 50px rgba(56, 189, 248, 0.08);
 }
 
 #home h2 {
-    color: #60a5fa;
-    font-size: 30px;
-    margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
+
+    margin-bottom: 18px;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(25px, 4vw, 38px);
+
+    font-weight: 600;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+
+    background:
+        linear-gradient(
+            90deg,
+            #38bdf8,
+            #60a5fa,
+            #a5b4fc
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
 }
 
-#home p {
-    font-size: 18px;
-    max-width: 700px;
-    margin-bottom: 8px;
+.degree {
+    position: relative;
+    z-index: 2;
+
+    color: #cbd5e1;
+
+    font-size: 15px !important;
+
+    letter-spacing: 0.5px;
 }
 
-#home p:last-child {
-    color: #dbeafe;
+.tagline {
+    position: relative;
+    z-index: 2;
+
+    max-width: 650px;
+
+    margin-top: 12px;
+
+    color: #94a3b8;
+
+    font-size: 16px !important;
+
+    line-height: 1.8;
 }
 
 
-/* =========================
-   SKILLS
-========================= */
+/* =========================================================
+   HERO BUTTONS
+   ========================================================= */
 
-#skills {
-    text-align: center;
-}
-
-#skills ul {
-    list-style: none;
+.home-buttons {
+    position: relative;
+    z-index: 2;
 
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
 
-    gap: 15px;
+    gap: 14px;
+
+    margin-top: 32px;
 }
 
-#skills li {
-    background: white;
+.btn {
+    position: relative;
 
     padding: 14px 25px;
 
-    border-radius: 10px;
+    border-radius: 8px;
 
-    font-weight: bold;
+    font-size: 13px;
+    font-weight: 700;
 
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    letter-spacing: 0.4px;
 
-    transition: 0.3s;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
 }
 
-#skills li:hover {
-    transform: translateY(-5px);
+.primary-btn {
+    background: #38bdf8;
+
+    color: #020617;
+
+    box-shadow:
+        0 10px 30px rgba(56, 189, 248, 0.20);
+}
+
+.primary-btn:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 40px rgba(56, 189, 248, 0.35);
+}
+
+.secondary-btn {
+    border: 1px solid rgba(148, 163, 184, 0.45);
+
+    color: white;
+
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.secondary-btn:hover {
+    transform: translateY(-4px);
+
+    border-color: #38bdf8;
+
+    background: rgba(56, 189, 248, 0.08);
+
+    color: #7dd3fc;
 }
 
 
-/* =========================
-   ABOUT
-========================= */
+/* =========================================================
+   SECTION LABEL
+   ========================================================= */
 
-#about {
-    background: white;
-    border-radius: 15px;
-}
-
-#about p {
-    font-size: 17px;
-    margin-bottom: 18px;
-}
-
-
-/* =========================
-   PROJECTS
-========================= */
-
-#projects {
-    text-align: center;
-}
-
-#projects > div {
-    display: inline-block;
-    vertical-align: top;
-
-    width: 45%;
-
-    margin: 10px;
-    padding: 30px;
-
-    background: white;
-
-    border-radius: 15px;
-
-    text-align: left;
-
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-
-    transition: 0.3s;
-}
-
-#projects > div:hover {
-    transform: translateY(-8px);
-}
-
-#projects h3 {
-    font-size: 23px;
-    color: #1d4ed8;
+.section-label {
     margin-bottom: 10px;
+
+    color: #2563eb;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
 }
 
 
-/* =========================
-   CAREER
-========================= */
+/* =========================================================
+   SKILLS
+   ========================================================= */
 
-#projects + section {
-    text-align: center;
-}
-
-#projects + section p {
-    max-width: 750px;
-    margin: auto;
-
-    font-size: 18px;
-}
-
-
-/* =========================
-   CONTACT
-========================= */
-
-#contact {
+#skills {
     max-width: none;
 
     text-align: center;
 
-    background: #0f172a;
-    color: white;
-}
-
-#contact h2 {
-    color: white;
-}
-
-#contact p {
-    margin: 10px;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 768px) {
-
-    nav {
-        padding: 15px 5%;
-    }
-
-    nav ul {
-        gap: 12px;
-    }
-
-    nav ul li a {
-        font-size: 11px;
-    }
-
-    #home h1 {
-        font-size: 35px;
-    }
-
-    #home h2 {
-        font-size: 24px;
-    }
-
-    #projects > div {
-        width: 90%;
-    }
-
-    section {
-        padding: 65px 20px;
-    }
-}
-/* =========================
-   HOME BUTTONS
-========================= */
-
-.welcome {
-    font-size: 14px !important;
-    letter-spacing: 3px;
-    color: #93c5fd;
-    margin-bottom: 15px;
-}
-
-.degree {
-    color: #dbeafe;
-}
-
-.tagline {
-    margin-top: 8px;
-}
-
-.home-buttons {
-    display: flex;
-    gap: 15px;
-    margin-top: 25px;
-}
-
-.btn {
-    text-decoration: none;
-    padding: 13px 25px;
-    border-radius: 8px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.primary-btn {
-    background: #60a5fa;
-    color: #0f172a;
-}
-
-.primary-btn:hover {
-    transform: translateY(-3px);
-}
-
-.secondary-btn {
-    border: 1px solid #93c5fd;
-    color: white;
-}
-
-.secondary-btn:hover {
-    background: #93c5fd;
-    color: #0f172a;
-}
-
-@media (max-width: 600px) {
-
-    .home-buttons {
-        flex-direction: column;
-        width: 200px;
-    }
-
-    .btn {
-        text-align: center;
-    }
-}/* =========================
-   PREMIUM SKILLS
-========================= */
-
-#skills {
-    text-align: center;
+    background: #f7f9fc;
 }
 
 #skills h2 {
-    margin-bottom: 45px;
+    margin-bottom: 55px;
 }
 
 .skills-container {
-    max-width: 950px;
+    max-width: 1000px;
+
     margin: auto;
 
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
 }
 
 .skill-card {
-    background: white;
+    position: relative;
 
-    padding: 28px 18px;
+    padding: 30px 20px;
+
+    background: rgba(255, 255, 255, 0.85);
+
+    border: 1px solid #e2e8f0;
 
     border-radius: 14px;
 
-    border: 1px solid #e5e7eb;
+    box-shadow:
+        0 8px 30px rgba(15, 23, 42, 0.05);
 
-    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.07);
+    overflow: hidden;
 
-    transition: all 0.3s ease;
+    transition: 0.35s ease;
 }
 
-.skill-card h3 {
-    font-size: 20px;
-    color: #1d4ed8;
+.skill-card::before {
+    content: "";
 
-    margin-bottom: 8px;
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #38bdf8
+        );
+
+    transform: scaleX(0);
+
+    transform-origin: left;
+
+    transition: 0.35s ease;
 }
 
-.skill-card p {
-    font-size: 14px;
-    color: #64748b;
+.skill-card:hover::before {
+    transform: scaleX(1);
 }
 
 .skill-card:hover {
     transform: translateY(-8px);
 
-    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.12);
-
     border-color: #93c5fd;
+
+    box-shadow:
+        0 20px 45px rgba(15, 23, 42, 0.10);
+}
+
+.skill-card h3 {
+    font-family: "Space Grotesk", sans-serif;
+
+    color: #0f172a;
+
+    font-size: 19px;
+
+    margin-bottom: 8px;
+}
+
+.skill-card:hover h3 {
+    color: #2563eb;
+}
+
+.skill-card p {
+    color: #64748b;
+
+    font-size: 13px;
 }
 
 
-/* =========================
-   SKILLS - MOBILE
-========================= */
-
-@media (max-width: 900px) {
-
-    .skills-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-
-    .skills-container {
-        grid-template-columns: 1fr;
-    }
-}/* =========================
-   PREMIUM ABOUT
-========================= */
+/* =========================================================
+   ABOUT
+   ========================================================= */
 
 #about {
+    max-width: none;
+
     background: white;
-    border-radius: 18px;
 }
 
 #about h2 {
     text-align: center;
-    margin-bottom: 45px;
+
+    margin-bottom: 55px;
 }
 
 .about-content {
+    max-width: 1000px;
+
+    margin: auto;
+
     display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 50px;
+
+    grid-template-columns:
+        1.4fr 1fr;
+
+    gap: 70px;
+
     align-items: center;
 }
 
 .about-text p {
-    font-size: 17px;
     color: #475569;
-    margin-bottom: 18px;
+
+    font-size: 16px;
+
+    line-height: 1.9;
+
+    margin-bottom: 20px;
 }
 
 .about-highlights {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
     gap: 15px;
 }
 
 .about-highlights div {
-    padding: 22px;
-    background: #f8fafc;
-    border-radius: 12px;
+    padding: 25px 15px;
+
     text-align: center;
+
+    background: #f8fafc;
+
     border: 1px solid #e2e8f0;
-    transition: 0.3s;
+
+    border-radius: 12px;
+
+    transition: 0.3s ease;
 }
 
 .about-highlights div:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
+
     border-color: #93c5fd;
+
+    box-shadow:
+        0 15px 35px rgba(15, 23, 42, 0.08);
 }
 
 .about-highlights h3 {
-    color: #1d4ed8;
-    font-size: 21px;
-    margin-bottom: 5px;
+    font-family: "Space Grotesk", sans-serif;
+
+    color: #2563eb;
+
+    font-size: 24px;
+
+    margin-bottom: 4px;
 }
 
 .about-highlights p {
     color: #64748b;
-    font-size: 14px;
+
+    font-size: 13px;
 }
 
 
-/* MOBILE */
-
-@media (max-width: 700px) {
-
-    .about-content {
-        grid-template-columns: 1fr;
-    }
-
-    .about-highlights {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}/* =========================
-   PREMIUM PROJECTS
-========================= */
+/* =========================================================
+   PROJECTS
+   ========================================================= */
 
 #projects {
-    text-align: center;
-}
+    max-width: none;
 
-.section-label {
-    color: #2563eb;
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 3px;
-    margin-bottom: 8px;
+    text-align: center;
+
+    background: #f7f9fc;
 }
 
 #projects h2 {
@@ -522,19 +662,25 @@ section h2 {
 
 .section-description {
     max-width: 650px;
-    margin: 0 auto 45px;
+
+    margin: 0 auto 50px;
+
     color: #64748b;
-    font-size: 16px;
+
+    font-size: 15px;
 }
 
 .projects-container {
-    max-width: 950px;
+    max-width: 1000px;
+
     margin: auto;
 
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
 
-    gap: 25px;
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 22px;
 
     text-align: left;
 }
@@ -542,261 +688,396 @@ section h2 {
 .project-card {
     position: relative;
 
+    padding: 35px;
+
     background: white;
-
-    padding: 32px;
-
-    border-radius: 18px;
 
     border: 1px solid #e2e8f0;
 
-    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
+    border-radius: 16px;
 
-    transition: all 0.3s ease;
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 35px rgba(15, 23, 42, 0.06);
+
+    transition: 0.4s ease;
+}
+
+.project-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 160px;
+    height: 160px;
+
+    right: -80px;
+    top: -80px;
+
+    border-radius: 50%;
+
+    background: rgba(37, 99, 235, 0.06);
+
+    transition: 0.4s ease;
+}
+
+.project-card:hover::after {
+    transform: scale(1.5);
 }
 
 .project-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-10px);
 
     border-color: #93c5fd;
 
-    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+    box-shadow:
+        0 25px 55px rgba(15, 23, 42, 0.12);
 }
 
 .project-number {
-    font-size: 13px;
-    font-weight: bold;
     color: #2563eb;
-    margin-bottom: 18px;
-}
 
-.project-card h3 {
-    font-size: 23px;
-    color: #0f172a;
-    margin-bottom: 12px;
-}
+    font-size: 11px;
 
-.project-card > p {
-    color: #64748b;
-    font-size: 15px;
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
     margin-bottom: 20px;
 }
 
+.project-card h3 {
+    position: relative;
+    z-index: 2;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    color: #0f172a;
+
+    font-size: 24px;
+
+    margin-bottom: 14px;
+}
+
+.project-card > p {
+    position: relative;
+    z-index: 2;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    margin-bottom: 22px;
+}
+
 .project-tools {
+    position: relative;
+    z-index: 2;
+
     display: flex;
+
     flex-wrap: wrap;
+
     gap: 8px;
 
     margin-bottom: 25px;
 }
 
 .project-tools span {
-    background: #eff6ff;
-    color: #1d4ed8;
-
     padding: 6px 12px;
 
     border-radius: 20px;
 
-    font-size: 12px;
-    font-weight: bold;
+    background: #eff6ff;
+
+    color: #1d4ed8;
+
+    font-size: 11px;
+
+    font-weight: 700;
 }
 
 .project-card button {
-    border: none;
+    position: relative;
+    z-index: 2;
 
-    background: #0f172a;
-    color: white;
+    border: none;
 
     padding: 11px 18px;
 
     border-radius: 7px;
 
-    font-weight: bold;
+    background: #0f172a;
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: 700;
 
     cursor: pointer;
 
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .project-card button:hover {
-    background: #1d4ed8;
+    background: #2563eb;
+
+    transform: translateX(4px);
 }
 
 
-/* PROJECTS - MOBILE */
-
-@media (max-width: 700px) {
-
-    .projects-container {
-        grid-template-columns: 1fr;
-    }
-
-    .project-card {
-        padding: 25px;
-    }
-}/* =========================
-   PREMIUM CAREER SECTION
-========================= */
+/* =========================================================
+   CAREER
+   ========================================================= */
 
 #career {
+    max-width: none;
+
     text-align: center;
-    background: #f8fafc;
+
+    background: white;
 }
 
 #career h2 {
-    margin-bottom: 40px;
+    margin-bottom: 45px;
 }
 
 .career-card {
-    max-width: 900px;
+    max-width: 950px;
+
     margin: auto;
-    padding: 40px;
-    background: white;
-    border: 1px solid #e2e8f0;
-    border-radius: 20px;
+
+    padding: 45px;
+
     display: flex;
+
     align-items: center;
+
     gap: 35px;
+
     text-align: left;
-    box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
-    transition: all 0.3s ease;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f8fbff
+        );
+
+    border: 1px solid #dbeafe;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 15px 45px rgba(15, 23, 42, 0.07);
+
+    transition: 0.4s ease;
 }
 
 .career-card:hover {
-    transform: translateY(-6px);
-    border-color: #93c5fd;
-    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 25px 60px rgba(15, 23, 42, 0.11);
 }
 
 .career-icon {
     min-width: 90px;
     height: 90px;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
-    background: #eff6ff;
-    border-radius: 18px;
-    font-size: 42px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dbeafe,
+            #e0f2fe
+        );
+
+    font-size: 40px;
 }
 
 .career-content h3 {
+    font-family: "Space Grotesk", sans-serif;
+
     color: #0f172a;
-    font-size: 24px;
-    margin-bottom: 15px;
+
+    font-size: 25px;
+
+    margin-bottom: 14px;
 }
 
 .career-content p {
     color: #64748b;
-    font-size: 15px;
-    line-height: 1.7;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
     margin-bottom: 12px;
 }
 
 .career-tags {
     display: flex;
+
     flex-wrap: wrap;
+
     gap: 8px;
+
     margin-top: 20px;
 }
 
 .career-tags span {
-    background: #eff6ff;
-    color: #1d4ed8;
     padding: 7px 13px;
+
     border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
+
+    background: #eff6ff;
+
+    color: #1d4ed8;
+
+    font-size: 11px;
+
+    font-weight: 700;
 }
 
-@media (max-width: 700px) {
 
-    .career-card {
-        flex-direction: column;
-        text-align: center;
-        padding: 30px 22px;
-    }
-
-    .career-tags {
-        justify-content: center;
-    }
-}/* =========================
-   PREMIUM CONTACT SECTION
-========================= */
+/* =========================================================
+   CONTACT
+   ========================================================= */
 
 #contact {
+    max-width: none;
+
     text-align: center;
-    background: #0f172a;
+
     color: white;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(37, 99, 235, 0.22),
+            transparent 35%
+        ),
+        #020617;
 }
 
 #contact .section-label {
-    color: #60a5fa;
+    color: #38bdf8;
 }
 
 #contact h2 {
     color: white;
+
     margin-bottom: 15px;
 }
 
 .contact-intro {
     max-width: 600px;
-    margin: 0 auto 45px;
-    color: #cbd5e1;
-    line-height: 1.7;
+
+    margin: 0 auto 50px;
+
+    color: #94a3b8;
+
+    font-size: 15px;
+
+    line-height: 1.8;
 }
 
 .contact-container {
-    max-width: 950px;
+    max-width: 1000px;
+
     margin: auto;
+
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
 }
 
 .contact-card {
-    background: #1e293b;
-    border: 1px solid #334155;
-    padding: 30px 20px;
+    padding: 32px 20px;
+
+    background: rgba(15, 23, 42, 0.75);
+
+    border: 1px solid #1e293b;
+
     border-radius: 16px;
-    transition: all 0.3s ease;
+
+    transition: 0.35s ease;
 }
 
 .contact-card:hover {
-    transform: translateY(-7px);
-    border-color: #60a5fa;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    transform: translateY(-8px);
+
+    border-color: #38bdf8;
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.25);
 }
 
 .contact-icon {
     width: 55px;
     height: 55px;
+
     margin: 0 auto 18px;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
-    background: #2563eb;
+
     border-radius: 14px;
-    font-size: 22px;
-    font-weight: bold;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #38bdf8
+        );
+
+    color: white;
+
+    font-size: 20px;
+
+    font-weight: 800;
 }
 
 .contact-card h3 {
+    font-family: "Space Grotesk", sans-serif;
+
     font-size: 19px;
+
     margin-bottom: 8px;
 }
 
 .contact-card p {
-    color: #94a3b8;
-    font-size: 14px;
+    color: #64748b;
+
+    font-size: 13px;
+
     margin-bottom: 18px;
 }
 
 .contact-card a {
-    color: #60a5fa;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: bold;
+    color: #38bdf8;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    transition: 0.3s;
 }
 
 .contact-card a:hover {
@@ -805,36 +1086,42 @@ section h2 {
 
 .contact-bottom {
     max-width: 700px;
-    margin: 50px auto 0;
+
+    margin: 55px auto 0;
+
     padding-top: 30px;
-    border-top: 1px solid #334155;
+
+    border-top: 1px solid #1e293b;
 }
 
 .contact-bottom h3 {
+    font-family: "Space Grotesk", sans-serif;
+
     font-size: 21px;
+
     margin-bottom: 8px;
 }
 
 .contact-bottom p {
-    color: #94a3b8;
+    color: #64748b;
 }
 
-@media (max-width: 700px) {
 
-    .contact-container {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-card {
-        padding: 25px;
-    }
-}/* =========================
-   PREMIUM RESUME CTA
-========================= */
+/* =========================================================
+   RESUME
+   ========================================================= */
 
 #resume {
+    max-width: none;
+
     text-align: center;
-    background: white;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #f8fafc
+        );
 }
 
 #resume h2 {
@@ -843,261 +1130,1009 @@ section h2 {
 
 .resume-text {
     max-width: 600px;
-    margin: 0 auto 30px;
+
+    margin: 0 auto 32px;
+
     color: #64748b;
-    line-height: 1.7;
+
+    font-size: 15px;
+
+    line-height: 1.8;
 }
 
 .resume-buttons {
     display: flex;
+
     justify-content: center;
+
     flex-wrap: wrap;
+
     gap: 12px;
 }
 
 .resume-btn {
-    text-decoration: none;
-    padding: 13px 22px;
+    padding: 14px 23px;
+
     border-radius: 8px;
-    font-size: 14px;
-    font-weight: bold;
-    transition: all 0.3s ease;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    transition: 0.3s ease;
 }
 
 .primary-resume {
     background: #2563eb;
+
     color: white;
+
+    box-shadow:
+        0 10px 25px rgba(37, 99, 235, 0.18);
 }
 
 .primary-resume:hover {
+    transform: translateY(-4px);
+
     background: #1d4ed8;
-    transform: translateY(-3px);
 }
 
 .secondary-resume {
     border: 1px solid #cbd5e1;
+
     color: #0f172a;
+
+    background: white;
 }
 
 .secondary-resume:hover {
+    transform: translateY(-4px);
+
     border-color: #2563eb;
+
     color: #2563eb;
-    transform: translateY(-3px);
 }
 
 
-/* =========================
-   PREMIUM FOOTER
-========================= */
+/* =========================================================
+   FOOTER
+   ========================================================= */
 
 footer {
-    background: #020617;
-    color: white;
+    padding: 40px 20px;
+
     text-align: center;
-    padding: 35px 20px;
+
+    background: #020617;
+
+    color: white;
 }
 
 .footer-logo {
-    font-size: 22px;
-    font-weight: bold;
-    letter-spacing: 2px;
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 23px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
     margin-bottom: 8px;
 }
 
 footer > p {
-    color: #94a3b8;
-    font-size: 14px;
+    color: #64748b;
+
+    font-size: 13px;
 }
 
 .footer-line {
     max-width: 700px;
+
     height: 1px;
-    background: #1e293b;
+
     margin: 25px auto 20px;
+
+    background: #1e293b;
 }
 
 .copyright {
-    font-size: 12px !important;
-    color: #64748b !important;
+    font-size: 11px !important;
+
+    color: #475569 !important;
 }
 
-@media (max-width: 600px) {
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .skills-container {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+    .projects-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    nav {
+        padding: 15px 20px;
+
+        flex-direction: column;
+
+        gap: 13px;
+    }
+
+    nav ul {
+        gap: 17px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    nav ul li a {
+        font-size: 10px;
+
+        letter-spacing: 0.8px;
+    }
+
+    section {
+        padding: 75px 20px;
+    }
+
+    section h2 {
+        font-size: 32px;
+    }
+
+    #home {
+        min-height: 90vh;
+
+        padding: 80px 20px;
+    }
+
+    #home h1 {
+        font-size: clamp(40px, 11vw, 58px);
+
+        letter-spacing: -2px;
+    }
+
+    #home h2 {
+        font-size: 22px;
+
+        letter-spacing: 3px;
+    }
+
+    .welcome {
+        font-size: 9px !important;
+
+        letter-spacing: 3px;
+    }
+
+    .home-buttons {
+        flex-direction: column;
+
+        width: 210px;
+    }
+
+    .btn {
+        text-align: center;
+    }
+
+    .skills-container {
+        grid-template-columns: 1fr;
+    }
+
+    .about-highlights {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .career-card {
+        flex-direction: column;
+
+        text-align: center;
+
+        padding: 30px 22px;
+    }
+
+    .career-tags {
+        justify-content: center;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
 
     .resume-buttons {
         flex-direction: column;
+
         max-width: 250px;
+
         margin: auto;
     }
 
     .resume-btn {
         text-align: center;
     }
-}/* =========================
-   FINAL PREMIUM POLISH
-========================= */
-
-html {
-    scroll-behavior: smooth;
-}
-
-section {
-    scroll-margin-top: 75px;
 }
 
 
-/* NAVBAR POLISH */
+@media (max-width: 450px) {
 
-nav {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
+    #home h1 {
+        font-size: 38px;
+    }
 
-nav ul li a {
+    #home h2 {
+        font-size: 19px;
+    }
+
+    .about-highlights {
+        grid-template-columns: 1fr;
+    }
+
+    .project-card {
+        padding: 27px 22px;
+    }
+}/* =========================================================
+   PREMIUM HERO TYPOGRAPHY
+========================================================= */
+
+.hero-content {
     position: relative;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    max-width: 1000px;
+    margin: auto;
 }
 
-nav ul li a::after {
-    content: "";
+/* HERO NAME */
+
+#home h1 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(55px, 9vw, 105px);
+
+    line-height: 0.92;
+
+    font-weight: 700;
+
+    letter-spacing: -5px;
+
+    text-align: center;
+
+    margin-bottom: 30px;
+
+    color: white;
+}
+
+#home h1 span {
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #7dd3fc,
+            #60a5fa
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+
+/* DATA ANALYST TITLE */
+
+.hero-role {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    margin-bottom: 20px;
+}
+
+.hero-role h2 {
+    margin: 0 !important;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(23px, 3vw, 34px) !important;
+
+    letter-spacing: 6px !important;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.role-line {
+    width: 55px;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #38bdf8
+        );
+}
+
+.role-line:last-child {
+    background:
+        linear-gradient(
+            90deg,
+            #38bdf8,
+            transparent
+        );
+}
+
+
+/* SKILLS LINE */
+
+#home .degree {
+    max-width: 800px;
+
+    margin-bottom: 5px;
+
+    letter-spacing: 0.8px;
+}
+
+
+/* TAGLINE */
+
+#home .tagline {
+    max-width: 650px;
+
+    margin-bottom: 0;
+
+    font-size: 15px !important;
+
+    color: #94a3b8;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   HERO STATS
+========================================================= */
+
+.hero-stats {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 0;
+
+    margin-top: 38px;
+
+    border-top: 1px solid rgba(148, 163, 184, 0.15);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+
+    padding: 18px 5px;
+}
+
+.hero-stats div {
+    min-width: 135px;
+
+    padding: 0 25px;
+
+    text-align: center;
+
+    border-right: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.hero-stats div:last-child {
+    border-right: none;
+}
+
+.hero-stats strong {
+    display: block;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 21px;
+
+    color: #e0f2fe;
+
+    letter-spacing: 1px;
+}
+
+.hero-stats span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #64748b;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   HERO BUTTON AREA
+========================================================= */
+
+#home .home-buttons {
+    margin-top: 35px;
+}
+
+
+/* =========================================================
+   HERO SCROLL INDICATOR
+========================================================= */
+
+.hero-scroll {
     position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 0;
+
+    bottom: 28px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #64748b;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+
+    white-space: nowrap;
+}
+
+.hero-scroll span {
+    width: 1px;
+    height: 35px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #38bdf8,
+            transparent
+        );
+
+    animation: scrollLine 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollLine {
+
+    0% {
+        opacity: 0.2;
+        transform: scaleY(0.5);
+        transform-origin: top;
+    }
+
+    50% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+
+    100% {
+        opacity: 0.2;
+        transform: scaleY(0.5);
+        transform-origin: bottom;
+    }
+}
+
+
+/* =========================================================
+   MOBILE HERO
+========================================================= */
+
+@media (max-width: 600px) {
+
+    #home h1 {
+        font-size: 48px;
+
+        letter-spacing: -3px;
+    }
+
+    .hero-role {
+        gap: 10px;
+    }
+
+    .hero-role h2 {
+        font-size: 19px !important;
+
+        letter-spacing: 3px !important;
+    }
+
+    .role-line {
+        width: 25px;
+    }
+
+    #home .degree {
+        font-size: 12px !important;
+
+        line-height: 1.8;
+    }
+
+    #home .tagline {
+        font-size: 13px !important;
+    }
+
+    .hero-stats {
+        width: 100%;
+    }
+
+    .hero-stats div {
+        min-width: 0;
+
+        flex: 1;
+
+        padding: 0 8px;
+    }
+
+    .hero-stats strong {
+        font-size: 16px;
+    }
+
+    .hero-stats span {
+        font-size: 8px;
+
+        letter-spacing: 1px;
+    }
+
+    .hero-scroll {
+        display: none;
+    }
+}.hero-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3.5rem, 8vw, 8.5rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 0.95;
+    text-align: center;
+    margin: 20px 0 35px;
+    white-space: nowrap;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff 0%,
+        #ffffff 45%,
+        #66e3ff 70%,
+        #ffffff 100%
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    text-shadow: 0 0 35px rgba(70, 210, 255, 0.25);
+}
+
+.hero-role h2 {
+    font-size: 1.2rem;
+    letter-spacing: 0.35em;
+    font-weight: 600;
+}/* =========================================
+   🔥 VIGNESH VELMURUGAN — MASS HERO NAME
+========================================= */
+
+.hero-name {
+    position: relative;
+    display: inline-block;
+
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3rem, 8vw, 8.5rem);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+
+    margin: 20px 0 35px;
+    white-space: nowrap;
+
+    /* Premium metallic text */
+    background: linear-gradient(
+        110deg,
+        #ffffff 0%,
+        #dffaff 25%,
+        #ffffff 42%,
+        #55ddff 52%,
+        #ffffff 62%,
+        #dffaff 80%,
+        #ffffff 100%
+    );
+
+    background-size: 250% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* 🔥 Animated shine */
+    animation: nameShine 5s linear infinite;
+
+    /* 🔥 Glow + depth */
+    filter:
+        drop-shadow(0 0 8px rgba(80, 220, 255, 0.25))
+        drop-shadow(0 0 25px rgba(50, 180, 255, 0.18));
+}
+
+
+/* Moving light across the name */
+
+@keyframes nameShine {
+
+    0% {
+        background-position: 250% center;
+    }
+
+    100% {
+        background-position: -250% center;
+    }
+
+}
+
+
+/* 🔥 3D depth */
+
+.hero-name::after {
+    content: "VIGNESH VELMURUGAN";
+
+    position: absolute;
+    left: 4px;
+    top: 7px;
+
+    z-index: -1;
+
+    color: rgba(40, 160, 200, 0.16);
+
+    -webkit-text-fill-color: rgba(40, 160, 200, 0.16);
+
+    transform: translateZ(-10px);
+
+    filter: blur(1px);
+}
+
+
+/* 🔥 Mobile */
+
+@media (max-width: 768px) {
+
+    .hero-name {
+        font-size: clamp(2.2rem, 10vw, 4rem);
+        letter-spacing: -0.04em;
+        white-space: normal;
+    }
+
+}/* =========================================
+   🔥 PREMIUM CINEMATIC NAME
+   VIGNESH VELMURUGAN
+========================================= */
+
+.hero-name {
+    position: relative;
+    display: inline-block;
+
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3rem, 8vw, 8.5rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.055em;
+
+    margin: 25px 0 38px;
+    white-space: nowrap;
+
+    background:
+        linear-gradient(
+            115deg,
+            #ffffff 0%,
+            #ffffff 20%,
+            #b9f5ff 35%,
+            #ffffff 48%,
+            #55ddff 53%,
+            #ffffff 60%,
+            #b9f5ff 78%,
+            #ffffff 100%
+        );
+
+    background-size: 300% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation:
+        cinematicShine 5s ease-in-out infinite,
+        nameReveal 1.2s cubic-bezier(.16,1,.3,1) both;
+
+    filter:
+        drop-shadow(0 0 10px rgba(80,220,255,.35))
+        drop-shadow(0 0 35px rgba(40,160,255,.20));
+
+    transform: perspective(900px) translateZ(0);
+}
+
+
+/* ✨ Moving cinematic light */
+
+@keyframes cinematicShine {
+
+    0% {
+        background-position: 250% center;
+    }
+
+    50% {
+        background-position: 0% center;
+    }
+
+    100% {
+        background-position: -250% center;
+    }
+
+}
+
+
+/* 🎬 Entrance animation */
+
+@keyframes nameReveal {
+
+    0% {
+        opacity: 0;
+        transform:
+            perspective(900px)
+            translateY(45px)
+            translateZ(-80px)
+            scale(.92);
+        filter: blur(12px);
+    }
+
+    100% {
+        opacity: 1;
+        transform:
+            perspective(900px)
+            translateY(0)
+            translateZ(0)
+            scale(1);
+        filter: blur(0);
+    }
+
+}
+
+
+/* 🔥 Deep 3D shadow */
+
+.hero-name::after {
+
+    content: "VIGNESH VELMURUGAN";
+
+    position: absolute;
+
+    left: 6px;
+    top: 9px;
+
+    z-index: -1;
+
+    color: rgba(30,150,210,.20);
+
+    -webkit-text-fill-color: rgba(30,150,210,.20);
+
+    transform: skewX(-3deg);
+
+    filter: blur(2px);
+}
+
+
+/* 💎 Soft premium glow */
+
+.hero-name::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 5%;
+    right: 5%;
+    bottom: -20px;
+
     height: 2px;
-    background: #60a5fa;
-    transition: width 0.3s ease;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(80,220,255,.8),
+        transparent
+    );
+
+    opacity: .55;
+
+    filter: blur(2px);
 }
 
-nav ul li a:hover::after {
-    width: 100%;
+
+/* 📱 Mobile */
+
+@media (max-width: 768px) {
+
+    .hero-name {
+        font-size: clamp(2.1rem, 10vw, 4rem);
+        letter-spacing: -0.04em;
+        white-space: normal;
+    }
+
+}/* =========================================
+   VIGNESH VELMURUGAN
+   PREMIUM SIGNATURE HERO
+========================================= */
+
+.hero-name {
+    position: relative;
+    display: inline-block;
+
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3rem, 7.8vw, 8rem);
+    font-weight: 900;
+    line-height: .92;
+    letter-spacing: -0.055em;
+
+    margin: 22px 0 38px;
+    white-space: nowrap;
+
+    /* PREMIUM TEXT */
+    background: linear-gradient(
+        100deg,
+        #ffffff 0%,
+        #ffffff 24%,
+        #9cecff 42%,
+        #ffffff 50%,
+        #ffffff 58%,
+        #61dcff 76%,
+        #ffffff 100%
+    );
+
+    background-size: 260% 100%;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* CINEMATIC SHINE */
+    animation:
+        heroNameIn 1.1s cubic-bezier(.16,1,.3,1) both,
+        heroNameShine 6s ease-in-out 1.1s infinite;
+
+    filter:
+        drop-shadow(0 0 8px rgba(90,220,255,.35))
+        drop-shadow(0 12px 30px rgba(0,0,0,.45));
 }
 
 
-/* SUBTLE CARD ANIMATION */
+/* ✨ Premium light sweep */
 
-.skill-card,
-.project-card,
-.career-card,
-.contact-card {
-    animation: fadeUp 0.7s ease both;
+@keyframes heroNameShine {
+    0%, 35% {
+        background-position: 200% center;
+    }
+
+    65%, 100% {
+        background-position: -100% center;
+    }
 }
 
-@keyframes fadeUp {
+
+/* 🎬 Entrance */
+
+@keyframes heroNameIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform:
+            translateY(35px)
+            scale(.94);
+        filter: blur(10px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform:
+            translateY(0)
+            scale(1);
+        filter: blur(0);
     }
 }
 
 
-/* BUTTON POLISH */
+/* 🔥 Elegant 3D depth */
 
-.btn,
-.resume-btn,
-.project-card button {
-    transition: all 0.3s ease;
+.hero-name::after {
+    content: "VIGNESH VELMURUGAN";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: -1;
+
+    transform:
+        translate(7px, 10px);
+
+    color: rgba(40,180,220,.16);
+    -webkit-text-fill-color: rgba(40,180,220,.16);
+
+    filter: blur(1.5px);
 }
 
-.btn:hover,
-.resume-btn:hover {
-    transform: translateY(-3px);
-}/* =========================
-   MOBILE PREMIUM POLISH
-========================= */
 
-@media (max-width: 600px) {
+/* ───── Premium underline ───── */
 
-    /* NAVBAR */
-    nav {
-        padding: 15px 20px;
-        flex-direction: column;
-        gap: 12px;
+.hero-name::before {
+    content: "";
+
+    position: absolute;
+
+    left: 8%;
+    right: 8%;
+    bottom: -22px;
+
+    height: 1px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(90,220,255,.85),
+        rgba(255,255,255,.9),
+        rgba(90,220,255,.85),
+        transparent
+    );
+
+    box-shadow:
+        0 0 12px rgba(80,220,255,.5);
+
+    opacity: .75;
+}
+
+
+/* 📱 Mobile */
+
+@media (max-width: 768px) {
+
+    .hero-name {
+        font-size: clamp(2.15rem, 10vw, 4rem);
+        letter-spacing: -0.04em;
+        white-space: normal;
     }
 
-    .logo {
-        font-size: 21px;
+    .hero-name::before {
+        bottom: -15px;
     }
 
-    nav ul {
-        gap: 16px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    nav ul li a {
-        font-size: 12px;
-    }
-
-
-    /* HOME */
-    #home {
-        min-height: 90vh;
-        padding: 80px 20px 50px;
-    }
-
-    #home h1 {
-        font-size: 34px;
-        line-height: 1.2;
-    }
-
-    #home h2 {
-        font-size: 23px;
-    }
-
-    #home p {
-        font-size: 15px;
-    }
-
-    .welcome {
-        font-size: 11px !important;
-        letter-spacing: 2px;
-    }
-
-
-    /* SECTIONS */
-    section {
-        padding: 65px 20px;
-    }
-
-    section h2 {
-        font-size: 28px;
-    }
-
-
-    /* ABOUT */
-    .about-text p {
-        font-size: 15px;
-    }
-
-
-    /* PROJECTS */
-    .project-card h3 {
-        font-size: 20px;
-    }
-
-    .project-card > p {
-        font-size: 14px;
-    }
-
-
-    /* CAREER */
-    .career-content h3 {
-        font-size: 21px;
-    }
-
-
-    /* CONTACT */
-    .contact-intro {
-        font-size: 14px;
-    }
-
-
-    /* FOOTER */
-    footer {
-        padding: 30px 15px;
-    }
 }
