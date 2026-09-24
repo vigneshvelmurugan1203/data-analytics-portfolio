@@ -4871,4 +4871,71 @@ footer {
         padding-left: 18px;
         padding-right: 18px;
     }
+}/* =========================================================
+   MOBILE PERFORMANCE MODE
+   Desktop design stays unchanged
+========================================================= */
+
+@media (max-width: 650px) {
+
+    /* Stop expensive visual rendering */
+    .hero,
+    .section,
+    .resume-section,
+    .contact-card,
+    .skill-card,
+    .project-card,
+    .career-card,
+    .about-panel {
+        transform-style: flat !important;
+    }
+
+    /* Disable heavy background filters */
+    .aurora,
+    .scene-grid,
+    .energy-ring,
+    .data-stream {
+        animation: none !important;
+        filter: none !important;
+    }
+
+    /* Reduce particle workload */
+    .particle-field {
+        opacity: .35 !important;
+    }
+
+    /* Remove expensive blur effects */
+    .contact-card,
+    .skill-card,
+    .project-card,
+    .career-card,
+    .about-panel {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    /* Simplify resume animation */
+    .resume-section::before {
+        animation-duration: 25s !important;
+    }
+
+    .resume-section::after {
+        animation-duration: 7s !important;
+        filter: blur(15px) !important;
+    }
+
+    /* Prevent accidental horizontal rendering */
+    body {
+        overflow-x: hidden !important;
+    }
+
+    /* Disable hover-style movement on mobile */
+    .contact-card:hover,
+    .skill-card:hover,
+    .project-card:hover,
+    .career-card:hover,
+    .about-panel:hover,
+    .resume-btn:hover {
+        transform: none !important;
+    }
 }
