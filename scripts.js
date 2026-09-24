@@ -1,685 +1,95 @@
 /* =========================================================
    VIGNESH VELMURUGAN
-   PREMIUM CINEMATIC PORTFOLIO ENGINE
-   ========================================================= */
+   PREMIUM DATA ANALYST PORTFOLIO
+   MOTION + 3D + GLOW ENGINE
+========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
     "use strict";
 
-    /* =====================================================
-       1. PREMIUM STYLE ENGINE
-       ===================================================== */
+    const body = document.body;
 
-    const style = document.createElement("style");
+    const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
 
-    style.textContent = `
-
-    /* ==============================
-       GLOBAL
-    ============================== */
-
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        overflow-x: hidden;
-    }
-
-    /* ==============================
-       CINEMATIC BACKGROUND
-    ============================== */
-
-    #premium-bg {
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        z-index: -2;
-        overflow: hidden;
-        background:
-            radial-gradient(
-                circle at 15% 20%,
-                rgba(37,99,235,0.08),
-                transparent 28%
-            ),
-            radial-gradient(
-                circle at 85% 70%,
-                rgba(96,165,250,0.07),
-                transparent 30%
-            );
-    }
-
-    .bg-orb {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(70px);
-        opacity: 0.28;
-        animation: orbFloat 12s ease-in-out infinite alternate;
-    }
-
-    .orb-one {
-        width: 320px;
-        height: 320px;
-        background: rgba(37,99,235,0.15);
-        top: 5%;
-        left: -100px;
-    }
-
-    .orb-two {
-        width: 280px;
-        height: 280px;
-        background: rgba(96,165,250,0.12);
-        right: -80px;
-        top: 40%;
-        animation-delay: -4s;
-    }
-
-    .orb-three {
-        width: 240px;
-        height: 240px;
-        background: rgba(29,78,216,0.10);
-        left: 40%;
-        bottom: -100px;
-        animation-delay: -7s;
-    }
-
-    @keyframes orbFloat {
-        from {
-            transform: translate3d(0,0,0) scale(1);
-        }
-
-        to {
-            transform: translate3d(35px,-25px,0) scale(1.12);
-        }
-    }
-
-    /* ==============================
-       MOUSE SPOTLIGHT
-    ============================== */
-
-    #mouse-spotlight {
-        position: fixed;
-        width: 420px;
-        height: 420px;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: -1;
-        transform: translate(-50%,-50%);
-        background:
-            radial-gradient(
-                circle,
-                rgba(37,99,235,0.10),
-                transparent 68%
-            );
-        opacity: 0;
-        transition: opacity 0.35s ease;
-    }
-
-    /* ==============================
-       HERO
-    ============================== */
-
-    #home {
-        position: relative;
-        isolation: isolate;
-    }
-
-    #home::before {
-        content: "";
-        position: absolute;
-        width: 420px;
-        height: 420px;
-        border-radius: 50%;
-        background: rgba(37,99,235,0.06);
-        filter: blur(90px);
-        top: 10%;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: -1;
-        animation: heroGlow 6s ease-in-out infinite alternate;
-    }
-
-    @keyframes heroGlow {
-        from {
-            transform: translateX(-50%) scale(0.9);
-            opacity: 0.45;
-        }
-
-        to {
-            transform: translateX(-50%) scale(1.15);
-            opacity: 0.85;
-        }
-    }
-
-    #home h1 {
-        position: relative;
-        text-shadow:
-            0 0 0 transparent;
-        transition:
-            text-shadow 0.5s ease,
-            transform 0.4s ease;
-    }
-
-    #home h1:hover {
-        text-shadow:
-            0 0 25px rgba(37,99,235,0.18);
-        transform: translateY(-2px);
-    }
-
-    #home h2 {
-        background:
-            linear-gradient(
-                90deg,
-                #1d4ed8,
-                #60a5fa,
-                #1d4ed8
-            );
-        background-size: 200% auto;
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        animation: titleShine 5s linear infinite;
-    }
-
-    @keyframes titleShine {
-        to {
-            background-position: 200% center;
-        }
-    }
-
-    /* ==============================
-       PREMIUM REVEAL
-    ============================== */
-
-    .cinematic-reveal {
-        opacity: 0;
-        transform:
-            translateY(45px)
-            scale(0.97);
-        filter: blur(4px);
-        transition:
-            opacity 0.9s ease,
-            transform 0.9s cubic-bezier(.16,1,.3,1),
-            filter 0.9s ease;
-    }
-
-    .cinematic-reveal.visible {
-        opacity: 1;
-        transform:
-            translateY(0)
-            scale(1);
-        filter: blur(0);
-    }
-
-    /* ==============================
-       CARD LIGHTING
-    ============================== */
-
-    .premium-3d {
-        position: relative;
-        transform-style: preserve-3d;
-        will-change: transform;
-        overflow: hidden;
-    }
-
-    .premium-3d::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        background:
-            radial-gradient(
-                circle at var(--light-x,50%) var(--light-y,50%),
-                rgba(96,165,250,0.22),
-                transparent 38%
-            );
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        z-index: 5;
-    }
-
-    .premium-3d:hover::before {
-        opacity: 1;
-    }
-
-    /* ==============================
-       SKILL CARD ICON-LIKE GLOW
-    ============================== */
-
-    .skill-card:hover h3 {
-        color: #2563eb;
-        transition: color 0.3s ease;
-    }
-
-    /* ==============================
-       PROJECT CARD
-    ============================== */
-
-    .project-card {
-        transition:
-            transform 0.45s cubic-bezier(.16,1,.3,1),
-            box-shadow 0.45s ease,
-            border-color 0.45s ease;
-    }
-
-    /* ==============================
-       NAVIGATION
-    ============================== */
-
-    nav {
-        transition:
-            background 0.35s ease,
-            box-shadow 0.35s ease,
-            padding 0.35s ease;
-    }
-
-    nav.scrolled {
-        box-shadow:
-            0 10px 30px rgba(15,23,42,0.08);
-    }
-
-    nav a {
-        transition:
-            color 0.25s ease,
-            transform 0.25s ease;
-    }
-
-    nav a:hover {
-        transform: translateY(-1px);
-    }
-
-    nav a.active {
-        color: #2563eb !important;
-    }
-
-    /* ==============================
-       SCROLL PROGRESS
-    ============================== */
-
-    #premium-progress {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 3px;
-        width: 0%;
-        z-index: 999999;
-        background:
-            linear-gradient(
-                90deg,
-                #1d4ed8,
-                #60a5fa,
-                #2563eb
-            );
-        box-shadow:
-            0 0 12px rgba(37,99,235,0.55);
-    }
-
-    /* ==============================
-       BACK TO TOP
-    ============================== */
-
-    #premium-top {
-        position: fixed;
-        right: 25px;
-        bottom: 25px;
-        width: 48px;
-        height: 48px;
-        border: 0;
-        border-radius: 50%;
-        background: #0f172a;
-        color: white;
-        cursor: pointer;
-        font-size: 20px;
-        z-index: 9999;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(20px) scale(0.85);
-        transition:
-            opacity 0.35s ease,
-            transform 0.35s ease,
-            background 0.25s ease;
-        box-shadow:
-            0 12px 30px rgba(15,23,42,0.22);
-    }
-
-    #premium-top.visible {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0) scale(1);
-    }
-
-    #premium-top:hover {
-        background: #2563eb;
-        transform: translateY(-5px) scale(1.05);
-    }
-
-    /* ==============================
-       RIPPLE
-    ============================== */
-
-    .premium-ripple {
-        position: absolute;
-        border-radius: 50%;
-        pointer-events: none;
-        background: rgba(255,255,255,0.38);
-        transform: scale(0);
-        animation: premiumRipple 0.65s ease-out;
-    }
-
-    @keyframes premiumRipple {
-        to {
-            transform: scale(4);
-            opacity: 0;
-        }
-    }
-
-    /* ==============================
-       REDUCED MOTION
-    ============================== */
-
-    @media (prefers-reduced-motion: reduce) {
-
-        *,
-        *::before,
-        *::after {
-            animation-duration: 0.01ms !important;
-            transition-duration: 0.01ms !important;
-            scroll-behavior: auto !important;
-        }
-
-        .cinematic-reveal {
-            opacity: 1 !important;
-            transform: none !important;
-            filter: none !important;
-        }
-    }
-
-    /* ==============================
-       MOBILE
-    ============================== */
-
-    @media (max-width:700px) {
-
-        #mouse-spotlight {
-            display: none;
-        }
-
-        .bg-orb {
-            filter: blur(55px);
-            opacity: 0.18;
-        }
-
-        #premium-top {
-            width: 44px;
-            height: 44px;
-            right: 18px;
-            bottom: 18px;
-        }
-    }
-
-    `;
-
-    document.head.appendChild(style);
+    const isMobile = window.innerWidth <= 650;
 
 
     /* =====================================================
-       2. CINEMATIC BACKGROUND
-       ===================================================== */
+       01 — PAGE READY
+    ===================================================== */
 
-    const background = document.createElement("div");
-
-    background.id = "premium-bg";
-
-    background.innerHTML = `
-        <div class="bg-orb orb-one"></div>
-        <div class="bg-orb orb-two"></div>
-        <div class="bg-orb orb-three"></div>
-    `;
-
-    document.body.prepend(background);
+    document.documentElement.style.scrollBehavior =
+        reduceMotion ? "auto" : "smooth";
 
 
     /* =====================================================
-       3. MOUSE SPOTLIGHT
-       ===================================================== */
+       02 — CURSOR LIGHT
+    ===================================================== */
 
-    const spotlight =
-        document.createElement("div");
+    const cursor = document.createElement("div");
 
-    spotlight.id = "mouse-spotlight";
+    cursor.className = "cursor-glow";
 
-    document.body.appendChild(spotlight);
+    Object.assign(cursor.style, {
+        position: "fixed",
+        width: "280px",
+        height: "280px",
+        borderRadius: "50%",
+        pointerEvents: "none",
+        zIndex: "50",
+        transform: "translate(-50%, -50%)",
+        background:
+            "radial-gradient(circle, rgba(0,234,255,.14), rgba(0,110,255,.06) 35%, transparent 70%)",
+        filter: "blur(8px)",
+        opacity: "0",
+        transition: "opacity .25s ease"
+    });
 
-    if (
-        window.matchMedia("(pointer:fine)").matches &&
-        window.innerWidth > 700
-    ) {
+    body.appendChild(cursor);
 
-        window.addEventListener("mousemove", (event) => {
 
-            spotlight.style.left =
-                `${event.clientX}px`;
+    if (!reduceMotion && !isMobile) {
 
-            spotlight.style.top =
-                `${event.clientY}px`;
+        window.addEventListener("mousemove", (e) => {
 
-            spotlight.style.opacity = "1";
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+            cursor.style.opacity = "1";
+
         });
 
-        document.addEventListener("mouseleave", () => {
-            spotlight.style.opacity = "0";
-        });
     }
 
 
     /* =====================================================
-       4. HERO CINEMATIC ENTRANCE
-       ===================================================== */
+       03 — SCROLL PROGRESS
+    ===================================================== */
 
-    const heroElements = document.querySelectorAll(
-        "#home .welcome, " +
-        "#home h1, " +
-        "#home h2, " +
-        "#home .degree, " +
-        "#home .tagline, " +
-        "#home .home-buttons"
-    );
+    const progress = document.createElement("div");
 
-    heroElements.forEach((element, index) => {
-
-        element.style.opacity = "0";
-
-        element.style.transform =
-            "translateY(35px)";
-
-        element.style.filter =
-            "blur(4px)";
-
-        element.style.transition =
-            `
-            opacity 0.9s ease ${index * 0.12}s,
-            transform 0.9s cubic-bezier(.16,1,.3,1) ${index * 0.12}s,
-            filter 0.9s ease ${index * 0.12}s
-            `;
+    Object.assign(progress.style, {
+        position: "fixed",
+        top: "0",
+        left: "0",
+        width: "0%",
+        height: "3px",
+        zIndex: "10000",
+        pointerEvents: "none",
+        background:
+            "linear-gradient(90deg,#006eff,#00eaff,#7df7ff)",
+        boxShadow:
+            "0 0 18px rgba(0,220,255,.9)"
     });
 
-    requestAnimationFrame(() => {
-
-        setTimeout(() => {
-
-            heroElements.forEach(element => {
-
-                element.style.opacity = "1";
-
-                element.style.transform =
-                    "translateY(0)";
-
-                element.style.filter =
-                    "blur(0)";
-            });
-
-        }, 150);
-    });
+    body.appendChild(progress);
 
 
-    /* =====================================================
-       5. CINEMATIC SCROLL REVEAL
-       ===================================================== */
+    function updateProgress() {
 
-    const revealTargets = document.querySelectorAll(
-        ".skill-card, " +
-        ".project-card, " +
-        ".career-card, " +
-        ".contact-card, " +
-        ".about-text, " +
-        ".about-highlights, " +
-        "#resume"
-    );
-
-    revealTargets.forEach((element, index) => {
-
-        element.classList.add(
-            "cinematic-reveal"
-        );
-
-        element.style.transitionDelay =
-            `${(index % 6) * 0.08}s`;
-    });
-
-
-    const revealObserver =
-        new IntersectionObserver(
-            (entries, observer) => {
-
-                entries.forEach(entry => {
-
-                    if (entry.isIntersecting) {
-
-                        entry.target.classList.add(
-                            "visible"
-                        );
-
-                        observer.unobserve(
-                            entry.target
-                        );
-                    }
-                });
-
-            },
-            {
-                threshold: 0.12
-            }
-        );
-
-
-    revealTargets.forEach(element => {
-        revealObserver.observe(element);
-    });
-
-
-    /* =====================================================
-       6. PREMIUM 3D CARD TILT
-       ===================================================== */
-
-    const cards = document.querySelectorAll(
-        ".skill-card, " +
-        ".project-card, " +
-        ".career-card, " +
-        ".contact-card"
-    );
-
-
-    cards.forEach(card => {
-
-        card.classList.add("premium-3d");
-
-        card.addEventListener(
-            "mousemove",
-            (event) => {
-
-                if (window.innerWidth <= 700) {
-                    return;
-                }
-
-                const rect =
-                    card.getBoundingClientRect();
-
-                const x =
-                    event.clientX - rect.left;
-
-                const y =
-                    event.clientY - rect.top;
-
-                const centerX =
-                    rect.width / 2;
-
-                const centerY =
-                    rect.height / 2;
-
-                const rotateX =
-                    ((y - centerY) / centerY) * -3.5;
-
-                const rotateY =
-                    ((x - centerX) / centerX) * 3.5;
-
-                card.style.transform =
-                    `
-                    perspective(1000px)
-                    rotateX(${rotateX}deg)
-                    rotateY(${rotateY}deg)
-                    translateY(-7px)
-                    scale(1.01)
-                    `;
-
-                card.style.setProperty(
-                    "--light-x",
-                    `${(x / rect.width) * 100}%`
-                );
-
-                card.style.setProperty(
-                    "--light-y",
-                    `${(y / rect.height) * 100}%`
-                );
-            }
-        );
-
-
-        card.addEventListener(
-            "mouseleave",
-            () => {
-
-                card.style.transform =
-                    `
-                    perspective(1000px)
-                    rotateX(0)
-                    rotateY(0)
-                    translateY(0)
-                    scale(1)
-                    `;
-            }
-        );
-
-    });
-
-
-    /* =====================================================
-       7. SCROLL PROGRESS
-       ===================================================== */
-
-    const progress =
-        document.createElement("div");
-
-    progress.id =
-        "premium-progress";
-
-    document.body.appendChild(progress);
-
-
-    const updateProgress = () => {
-
-        const scrollTop =
-            window.scrollY;
+        const scrollTop = window.scrollY;
 
         const maxScroll =
             document.documentElement.scrollHeight -
@@ -692,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         progress.style.width =
             `${percentage}%`;
-    };
+    }
 
 
     window.addEventListener(
@@ -705,131 +115,599 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       8. NAVBAR SCROLL EFFECT
-       ===================================================== */
+       04 — HERO ELEMENTS
+    ===================================================== */
 
-    const nav =
-        document.querySelector("nav");
+    const hero =
+        document.querySelector(".hero");
 
-    const handleNavScroll = () => {
+    const heroContent =
+        document.querySelector(".hero-content");
 
-        if (!nav) return;
+    const dataCore =
+        document.querySelector(".data-core");
 
-        if (window.scrollY > 40) {
+    const techNodes =
+        document.querySelectorAll(".tech-node");
 
-            nav.classList.add("scrolled");
-
-        } else {
-
-            nav.classList.remove("scrolled");
-        }
-    };
-
-
-    window.addEventListener(
-        "scroll",
-        handleNavScroll,
-        { passive: true }
-    );
-
-    handleNavScroll();
+    const orbits =
+        document.querySelectorAll(".data-orbit");
 
 
     /* =====================================================
-       9. ACTIVE NAV SECTION
-       ===================================================== */
+       05 — HERO 3D MOUSE MOVEMENT
+    ===================================================== */
 
-    const sections =
+    if (
+        hero &&
+        heroContent &&
+        !reduceMotion &&
+        !isMobile
+    ) {
+
+        hero.addEventListener("mousemove", (e) => {
+
+            const rect =
+                hero.getBoundingClientRect();
+
+            const x =
+                (e.clientX - rect.left) /
+                rect.width -
+                0.5;
+
+            const y =
+                (e.clientY - rect.top) /
+                rect.height -
+                0.5;
+
+
+            /* Main content */
+
+            heroContent.style.transform =
+                `
+                perspective(1400px)
+                rotateY(${x * 3}deg)
+                rotateX(${y * -3}deg)
+                translateZ(25px)
+                `;
+
+
+            /* Central core */
+
+            if (dataCore) {
+
+                dataCore.style.transform =
+                    `
+                    translate(-50%,-50%)
+                    translate3d(${x * 35}px, ${y * 35}px, -180px)
+                    rotateY(${x * 8}deg)
+                    rotateX(${y * -8}deg)
+                    `;
+
+            }
+
+
+            /* Orbit depth */
+
+            orbits.forEach((orbit, index) => {
+
+                const depth =
+                    (index + 1) * 12;
+
+                orbit.style.marginLeft =
+                    `${x * depth}px`;
+
+                orbit.style.marginTop =
+                    `${y * depth}px`;
+
+            });
+
+
+            /* Technology nodes */
+
+            techNodes.forEach((node, index) => {
+
+                const depth =
+                    (index + 1) * 5;
+
+                node.style.marginLeft =
+                    `${x * depth}px`;
+
+                node.style.marginTop =
+                    `${y * depth}px`;
+
+            });
+
+        });
+
+
+        hero.addEventListener("mouseleave", () => {
+
+            heroContent.style.transform =
+                `
+                perspective(1400px)
+                rotateY(0deg)
+                rotateX(0deg)
+                translateZ(0)
+                `;
+
+
+            if (dataCore) {
+
+                dataCore.style.transform =
+                    `
+                    translate(-50%,-50%)
+                    translateZ(-180px)
+                    `;
+
+            }
+
+
+            orbits.forEach((orbit) => {
+
+                orbit.style.marginLeft = "0px";
+                orbit.style.marginTop = "0px";
+
+            });
+
+
+            techNodes.forEach((node) => {
+
+                node.style.marginLeft = "0px";
+                node.style.marginTop = "0px";
+
+            });
+
+        });
+
+    }
+
+
+    /* =====================================================
+       06 — FLOATING TECHNOLOGY NODES
+    ===================================================== */
+
+    if (!reduceMotion) {
+
+        techNodes.forEach((node, index) => {
+
+            const duration =
+                4200 + index * 850;
+
+            const distance =
+                12 + index * 3;
+
+            node.animate(
+                [
+                    {
+                        transform:
+                            "translate3d(0,0,0) rotateZ(0deg)"
+                    },
+                    {
+                        transform:
+                            `translate3d(0,-${distance}px,0) rotateZ(1deg)`
+                    },
+                    {
+                        transform:
+                            "translate3d(0,0,0) rotateZ(0deg)"
+                    }
+                ],
+                {
+                    duration,
+                    iterations: Infinity,
+                    easing: "ease-in-out",
+                    delay: index * -500
+                }
+            );
+
+        });
+
+    }
+
+
+    /* =====================================================
+       07 — DATA CORE PULSE
+    ===================================================== */
+
+    if (dataCore && !reduceMotion) {
+
+        const coreCenter =
+            dataCore.querySelector(".core-center");
+
+        if (coreCenter) {
+
+            coreCenter.animate(
+                [
+                    {
+                        transform:
+                            "translate(-50%,-50%) scale(1)"
+                    },
+                    {
+                        transform:
+                            "translate(-50%,-50%) scale(1.08)"
+                    },
+                    {
+                        transform:
+                            "translate(-50%,-50%) scale(1)"
+                    }
+                ],
+                {
+                    duration: 2600,
+                    iterations: Infinity,
+                    easing: "ease-in-out"
+                }
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       08 — CARD 3D TILT
+    ===================================================== */
+
+    const cards =
         document.querySelectorAll(
-            "section[id]"
+            ".skill-card, .project-card, .contact-card, .career-card, .about-panel"
         );
+
+
+    cards.forEach((card) => {
+
+        card.style.transformStyle =
+            "preserve-3d";
+
+
+        /* Mouse light */
+
+        const light =
+            document.createElement("div");
+
+        Object.assign(light.style, {
+            position: "absolute",
+            width: "220px",
+            height: "220px",
+            borderRadius: "50%",
+            pointerEvents: "none",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%,-50%)",
+            background:
+                "radial-gradient(circle,rgba(0,234,255,.13),transparent 70%)",
+            opacity: "0",
+            transition: "opacity .25s ease",
+            zIndex: "0"
+        });
+
+        card.appendChild(light);
+
+
+        if (!reduceMotion && !isMobile) {
+
+            card.addEventListener(
+                "mousemove",
+                (e) => {
+
+                    const rect =
+                        card.getBoundingClientRect();
+
+                    const x =
+                        e.clientX - rect.left;
+
+                    const y =
+                        e.clientY - rect.top;
+
+                    const rotateY =
+                        ((x - rect.width / 2) /
+                            (rect.width / 2)) * 7;
+
+                    const rotateX =
+                        ((rect.height / 2 - y) /
+                            (rect.height / 2)) * 7;
+
+
+                    card.style.transform =
+                        `
+                        perspective(1000px)
+                        rotateX(${rotateX}deg)
+                        rotateY(${rotateY}deg)
+                        translateY(-7px)
+                        scale(1.015)
+                        `;
+
+
+                    light.style.left =
+                        `${x}px`;
+
+                    light.style.top =
+                        `${y}px`;
+
+                    light.style.opacity =
+                        "1";
+
+                }
+            );
+
+
+            card.addEventListener(
+                "mouseleave",
+                () => {
+
+                    card.style.transform =
+                        "";
+
+                    light.style.opacity =
+                        "0";
+
+                }
+            );
+
+        }
+
+    });
+
+
+    /* =====================================================
+       09 — CINEMATIC SCROLL REVEAL
+    ===================================================== */
+
+    const revealElements =
+        document.querySelectorAll(
+            ".section-intro, .about-main, .about-panel, " +
+            ".skill-card, .project-card, .career-card, " +
+            ".contact-card, .resume-section"
+        );
+
+
+    revealElements.forEach(
+        (element, index) => {
+
+            element.classList.add(
+                "cinematic-reveal"
+            );
+
+            element.style.transitionDelay =
+                `${(index % 5) * 70}ms`;
+
+        }
+    );
+
+
+    if (!reduceMotion) {
+
+        const revealObserver =
+            new IntersectionObserver(
+                (entries, observer) => {
+
+                    entries.forEach((entry) => {
+
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            entry.target.classList.add(
+                                "revealed"
+                            );
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        revealElements.forEach(
+            (element) => {
+
+                revealObserver.observe(
+                    element
+                );
+
+            }
+        );
+
+    } else {
+
+        revealElements.forEach(
+            (element) => {
+
+                element.classList.add(
+                    "revealed"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       10 — ACTIVE NAVIGATION
+    ===================================================== */
 
     const navLinks =
         document.querySelectorAll(
-            'nav a[href^="#"]'
+            ".nav-links a"
+        );
+
+    const sections =
+        document.querySelectorAll(
+            "main section[id]"
         );
 
 
-    const sectionObserver =
+    const navObserver =
         new IntersectionObserver(
             (entries) => {
 
-                entries.forEach(entry => {
+                entries.forEach((entry) => {
 
-                    if (!entry.isIntersecting) {
-                        return;
-                    }
+                    if (
+                        entry.isIntersecting
+                    ) {
 
-                    navLinks.forEach(link => {
-                        link.classList.remove(
-                            "active"
+                        const id =
+                            entry.target.id;
+
+                        navLinks.forEach(
+                            (link) => {
+
+                                link.classList.toggle(
+                                    "active",
+                                    link.getAttribute(
+                                        "href"
+                                    ) === `#${id}`
+                                );
+
+                            }
                         );
-                    });
 
-
-                    const active =
-                        document.querySelector(
-                            `nav a[href="#${entry.target.id}"]`
-                        );
-
-
-                    if (active) {
-                        active.classList.add(
-                            "active"
-                        );
                     }
 
                 });
 
             },
             {
-                threshold: 0.35
+                threshold: 0.45
             }
         );
 
 
-    sections.forEach(section => {
-        sectionObserver.observe(section);
+    sections.forEach(
+        (section) => {
+
+            navObserver.observe(
+                section
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       11 — SMOOTH NAVIGATION
+    ===================================================== */
+
+    navLinks.forEach((link) => {
+
+        link.addEventListener(
+            "click",
+            (e) => {
+
+                const href =
+                    link.getAttribute(
+                        "href"
+                    );
+
+                if (
+                    !href ||
+                    !href.startsWith("#")
+                ) return;
+
+                const target =
+                    document.querySelector(
+                        href
+                    );
+
+                if (!target) return;
+
+                e.preventDefault();
+
+                target.scrollIntoView({
+                    behavior:
+                        reduceMotion
+                            ? "auto"
+                            : "smooth",
+                    block: "start"
+                });
+
+            }
+        );
+
     });
 
 
     /* =====================================================
-       10. PREMIUM BUTTON RIPPLE
-       ===================================================== */
+       12 — MAGNETIC BUTTONS
+    ===================================================== */
 
     const buttons =
         document.querySelectorAll(
-            ".btn, " +
-            ".resume-btn, " +
-            ".project-card button"
+            ".hero-btn, .resume-btn, .project-link"
         );
 
 
-    buttons.forEach(button => {
+    if (!reduceMotion && !isMobile) {
 
-        button.style.position =
-            "relative";
+        buttons.forEach((button) => {
 
-        button.style.overflow =
-            "hidden";
+            button.addEventListener(
+                "mousemove",
+                (e) => {
 
+                    const rect =
+                        button.getBoundingClientRect();
+
+                    const x =
+                        e.clientX -
+                        rect.left -
+                        rect.width / 2;
+
+                    const y =
+                        e.clientY -
+                        rect.top -
+                        rect.height / 2;
+
+
+                    button.style.transform =
+                        `
+                        translate(
+                            ${x * 0.10}px,
+                            ${y * 0.10}px
+                        )
+                        scale(1.04)
+                        `;
+
+                }
+            );
+
+
+            button.addEventListener(
+                "mouseleave",
+                () => {
+
+                    button.style.transform =
+                        "";
+
+                }
+            );
+
+        });
+
+    }
+
+
+    /* =====================================================
+       13 — BUTTON RIPPLE
+    ===================================================== */
+
+    buttons.forEach((button) => {
 
         button.addEventListener(
             "click",
-            function(event) {
-
-                const ripple =
-                    document.createElement(
-                        "span"
-                    );
-
-                ripple.className =
-                    "premium-ripple";
-
+            (e) => {
 
                 const rect =
                     button.getBoundingClientRect();
-
 
                 const size =
                     Math.max(
@@ -838,21 +716,31 @@ document.addEventListener("DOMContentLoaded", () => {
                     );
 
 
-                ripple.style.width =
-                    `${size}px`;
+                const ripple =
+                    document.createElement(
+                        "span"
+                    );
 
-                ripple.style.height =
-                    `${size}px`;
 
-                ripple.style.left =
-                    `${event.clientX -
-                      rect.left -
-                      size / 2}px`;
-
-                ripple.style.top =
-                    `${event.clientY -
-                      rect.top -
-                      size / 2}px`;
+                Object.assign(
+                    ripple.style,
+                    {
+                        position: "absolute",
+                        width: `${size}px`,
+                        height: `${size}px`,
+                        borderRadius: "50%",
+                        left:
+                            `${e.clientX - rect.left - size / 2}px`,
+                        top:
+                            `${e.clientY - rect.top - size / 2}px`,
+                        background:
+                            "rgba(255,255,255,.2)",
+                        transform:
+                            "scale(0)",
+                        pointerEvents:
+                            "none"
+                    }
+                );
 
 
                 button.appendChild(
@@ -860,95 +748,268 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
 
 
-                setTimeout(() => {
-                    ripple.remove();
-                }, 700);
+                ripple.animate(
+                    [
+                        {
+                            transform:
+                                "scale(0)",
+                            opacity: 1
+                        },
+                        {
+                            transform:
+                                "scale(1.8)",
+                            opacity: 0
+                        }
+                    ],
+                    {
+                        duration: 650,
+                        easing: "ease-out"
+                    }
+                );
+
+
+                setTimeout(
+                    () => ripple.remove(),
+                    700
+                );
 
             }
         );
+
     });
 
 
     /* =====================================================
-       11. MAGNETIC PRIMARY BUTTON
-       ===================================================== */
+       14 — FLOATING PARTICLES
+    ===================================================== */
 
-    const magneticButtons =
-        document.querySelectorAll(
-            ".primary-btn, " +
-            ".primary-resume"
+    const particleField =
+        document.querySelector(
+            ".particle-field"
         );
 
 
-    magneticButtons.forEach(button => {
+    if (
+        particleField &&
+        !reduceMotion
+    ) {
 
-        button.addEventListener(
-            "mousemove",
-            (event) => {
+        const count =
+            isMobile ? 25 : 70;
 
-                if (window.innerWidth <= 700) {
-                    return;
+
+        for (
+            let i = 0;
+            i < count;
+            i++
+        ) {
+
+            const particle =
+                document.createElement(
+                    "span"
+                );
+
+
+            const size =
+                Math.random() * 2.5 + 1;
+
+
+            Object.assign(
+                particle.style,
+                {
+                    position: "absolute",
+                    width: `${size}px`,
+                    height: `${size}px`,
+                    borderRadius: "50%",
+                    left:
+                        `${Math.random() * 100}%`,
+                    top:
+                        `${Math.random() * 100}%`,
+                    background:
+                        i % 2 === 0
+                            ? "#00eaff"
+                            : "#087cff",
+                    boxShadow:
+                        "0 0 10px rgba(0,220,255,.8)",
+                    opacity:
+                        `${Math.random() * .7 + .2}`
                 }
-
-                const rect =
-                    button.getBoundingClientRect();
+            );
 
 
-                const x =
-                    event.clientX -
-                    rect.left -
-                    rect.width / 2;
-
-                const y =
-                    event.clientY -
-                    rect.top -
-                    rect.height / 2;
+            particleField.appendChild(
+                particle
+            );
 
 
-                button.style.transform =
-                    `
-                    translate(
-                        ${x * 0.08}px,
-                        ${y * 0.08}px
-                    )
-                    scale(1.03)
-                    `;
-            }
+            const duration =
+                5000 +
+                Math.random() * 10000;
+
+
+            const x =
+                (Math.random() - .5) * 180;
+
+            const y =
+                (Math.random() - .5) * 220;
+
+
+            particle.animate(
+                [
+                    {
+                        transform:
+                            "translate3d(0,0,0)",
+                        opacity: .2
+                    },
+                    {
+                        transform:
+                            `translate3d(${x}px,${y}px,0)`,
+                        opacity: .9
+                    },
+                    {
+                        transform:
+                            "translate3d(0,0,0)",
+                        opacity: .2
+                    }
+                ],
+                {
+                    duration,
+                    iterations: Infinity,
+                    easing: "ease-in-out",
+                    delay:
+                        -Math.random() *
+                        duration
+                }
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       15 — SKILL BAR ANIMATION
+    ===================================================== */
+
+    const skillBars =
+        document.querySelectorAll(
+            ".skill-bar span"
         );
 
 
-        button.addEventListener(
-            "mouseleave",
-            () => {
+    skillBars.forEach((bar) => {
 
-                button.style.transform =
-                    "translate(0,0) scale(1)";
-            }
-        );
+        bar.style.width = "0%";
 
     });
 
 
+    if (skillBars.length) {
+
+        const skillObserver =
+            new IntersectionObserver(
+                (entries, observer) => {
+
+                    entries.forEach(
+                        (entry) => {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target.style.width =
+                                    "72%";
+
+                                observer.unobserve(
+                                    entry.target
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.5
+                }
+            );
+
+
+        skillBars.forEach(
+            (bar) => {
+
+                skillObserver.observe(
+                    bar
+                );
+
+            }
+        );
+
+    }
+
+
     /* =====================================================
-       12. BACK TO TOP
-       ===================================================== */
+       16 — BACK TO TOP
+    ===================================================== */
 
-    const topButton =
-        document.createElement("button");
+    const backTop =
+        document.createElement(
+            "button"
+        );
 
-    topButton.id =
-        "premium-top";
 
-    topButton.innerHTML =
+    backTop.className =
+        "ultra-back-top";
+
+    backTop.innerHTML =
         "↑";
 
-    topButton.setAttribute(
+    backTop.setAttribute(
         "aria-label",
         "Back to top"
     );
 
-    document.body.appendChild(
-        topButton
+
+    Object.assign(
+        backTop.style,
+        {
+            position: "fixed",
+            right: "24px",
+            bottom: "24px",
+            width: "48px",
+            height: "48px",
+            borderRadius: "50%",
+            border:
+                "1px solid rgba(0,220,255,.35)",
+            background:
+                "rgba(5,15,30,.8)",
+            color:
+                "#00eaff",
+            fontSize:
+                "22px",
+            cursor:
+                "pointer",
+            zIndex:
+                "500",
+            opacity:
+                "0",
+            visibility:
+                "hidden",
+            transform:
+                "translateY(20px)",
+            transition:
+                "all .35s ease",
+            backdropFilter:
+                "blur(14px)",
+            boxShadow:
+                "0 0 30px rgba(0,180,255,.15)"
+        }
+    );
+
+
+    body.appendChild(
+        backTop
     );
 
 
@@ -956,31 +1017,38 @@ document.addEventListener("DOMContentLoaded", () => {
         "scroll",
         () => {
 
-            if (window.scrollY > 600) {
+            const visible =
+                window.scrollY > 500;
 
-                topButton.classList.add(
-                    "visible"
-                );
 
-            } else {
+            backTop.style.opacity =
+                visible ? "1" : "0";
 
-                topButton.classList.remove(
-                    "visible"
-                );
-            }
+            backTop.style.visibility =
+                visible
+                    ? "visible"
+                    : "hidden";
+
+            backTop.style.transform =
+                visible
+                    ? "translateY(0)"
+                    : "translateY(20px)";
 
         },
         { passive: true }
     );
 
 
-    topButton.addEventListener(
+    backTop.addEventListener(
         "click",
         () => {
 
             window.scrollTo({
                 top: 0,
-                behavior: "smooth"
+                behavior:
+                    reduceMotion
+                        ? "auto"
+                        : "smooth"
             });
 
         }
@@ -988,161 +1056,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       13. ABOUT COUNTER
+       17 — PAGE LOAD
     ===================================================== */
 
-    const counters =
-        document.querySelectorAll(
-            ".about-highlights h3"
-        );
+    window.addEventListener(
+        "load",
+        () => {
 
+            body.classList.add(
+                "page-loaded"
+            );
 
-    const animateCounter = (element) => {
-
-        const text =
-            element.textContent.trim();
-
-        const match =
-            text.match(/^(\d+)(.*)$/);
-
-        if (!match) {
-            return;
-        }
-
-
-        const target =
-            parseInt(match[1]);
-
-        const suffix =
-            match[2];
-
-
-        const duration =
-            1000;
-
-        const start =
-            performance.now();
-
-
-        const animate = (time) => {
-
-            const progress =
-                Math.min(
-                    (time - start) /
-                    duration,
-                    1
-                );
-
-
-            const eased =
-                1 -
-                Math.pow(
-                    1 - progress,
-                    3
-                );
-
-
-            const value =
-                Math.floor(
-                    target * eased
-                );
-
-
-            element.textContent =
-                value + suffix;
-
-
-            if (progress < 1) {
-
-                requestAnimationFrame(
-                    animate
-                );
-
-            } else {
-
-                element.textContent =
-                    target + suffix;
-            }
-        };
-
-
-        requestAnimationFrame(
-            animate
-        );
-    };
-
-
-    const counterObserver =
-        new IntersectionObserver(
-            (entries, observer) => {
-
-                entries.forEach(entry => {
-
-                    if (entry.isIntersecting) {
-
-                        animateCounter(
-                            entry.target
-                        );
-
-                        observer.unobserve(
-                            entry.target
-                        );
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.8
-            }
-        );
-
-
-    counters.forEach(counter => {
-        counterObserver.observe(counter);
-    });
-
-
-    /* =====================================================
-       14. KEYBOARD ACCESSIBILITY
-       ===================================================== */
-
-    document.addEventListener(
-        "keydown",
-        (event) => {
-
-            if (event.key === "Escape") {
-
-                document.activeElement?.blur();
-            }
+            updateProgress();
 
         }
     );
 
 
     /* =====================================================
-       15. DEVELOPER CONSOLE
+       18 — CONSOLE BRANDING
     ===================================================== */
 
     console.log(
         "%c VIGNESH VELMURUGAN ",
-        `
-        background:#0f172a;
-        color:#60a5fa;
-        padding:8px 14px;
-        border-radius:6px;
-        font-size:16px;
-        font-weight:bold;
-        `
+        "background:#07111f;color:#00eaff;font-size:18px;font-weight:bold;padding:8px 14px;border-radius:8px;"
     );
 
     console.log(
-        "%c Data Analyst Portfolio 🚀 ",
-        `
-        color:#2563eb;
-        font-size:13px;
-        font-weight:bold;
-        `
+        "%c DATA ANALYST PORTFOLIO ",
+        "color:#7aa7c7;font-size:12px;"
     );
+    
 
 });
